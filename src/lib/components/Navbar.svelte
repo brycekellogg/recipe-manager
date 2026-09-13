@@ -108,7 +108,7 @@
         justify-content: flex-end;
         align-items: center;
         padding-right: 12px;
-        padding-left:  12px;
+        padding-left:  6px;
         margin: 0;
         height: 48px;
         background-color: var(--color-bg-secondary);

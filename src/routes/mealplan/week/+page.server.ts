@@ -2,6 +2,8 @@ import fs      from 'node:fs';
 import path    from 'node:path';
 import matter  from 'gray-matter';
 
+import { fail } from '@sveltejs/kit';
+
 import { RECIPE_DIR } from '$app/env/private';
 
 import { toInterval } from '$lib/date.ts';
@@ -59,6 +61,11 @@ export const actions = {
 
 	add: async ({request}) => {
         const formdata = await request.formData();
+
+        if (formdata.get('recipe') == null) {
+            return fail(400, {});
+        }
+
         const filepath = `${RECIPE_DIR}/${formdata.get('recipe')}.md`;
 
         const { data , content } = matter.read(filepath, {});
